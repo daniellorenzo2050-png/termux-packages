@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Termux Packages</title>
+    <style>
+        /* Variáveis de Cores e Estilos Globais */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --primary: #3182ce;
+            --danger: #e53e3e;
+            --success: #38a169;
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Container Principal com Efeito de Elevação */
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Relógio no topo */
+        .clock-badge {
+            display: inline-block;
+            background-color: #ebf8ff;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Subtítulos e Blocos de Texto Detalhados */
+        .info-section {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: var(--text-main);
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            background-color: #f7fafc;
+            padding: 18px 20px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+        }
+
+        h2 strong {
+            color: var(--primary);
+            font-family: monospace;
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Texto descritivo adicional */
+        .description-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            background-color: #fffaf0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 5px solid #dd6b20;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        /* Título Principal */
+        h1 {
+            color: var(--danger);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Painel de Botões e Interatividade */
+        .actions-panel {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: #2b6cb0;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
+        }
+
+        /* Contador de Interações */
+        .counter-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+
+        /* Sistema de Notificação Flutuante (Toast) */
+        .toast {
+            visibility: hidden;
+            min-width: 220px;
+            background-color: #2d3748;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease, bottom 0.3s ease;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="clock-badge" id="relogio">Carregando horário...</div>
+
+        <div class="info-section">
+            <h2>Essa pasta guarda os pacotes do app para Termux no repositório <strong>termux-packages</strong>.</h2>
+            
+            <div class="description-text">
+                <strong>O que é este espaço?</strong> Este diretório funciona como o núcleo de organização e compilação de scripts e dependências essenciais. Ele garante que as ferramentas do ecossistema Termux funcionem perfeitamente em dispositivos móveis, permitindo gerenciar pacotes, bibliotecas e atualizações de forma automatizada e estruturada.
+            </div>
+        </div>
+
+        <h1>A gente foi avisar vocês, então tchau!</h1>
+
+        <div class="actions-panel">
+            <button class="btn" id="btnInteragir">Dar um 👋</button>
+            <button class="btn btn-secondary" id="btnTema">Mudar Fundo</button>
+        </div>
+
+        <p class="counter-text">Interações realizadas: <span id="contador">0</span></p>
+    </div>
+
+    <div id="toastNotification" class="toast">Mensagem enviada com sucesso!</div>
+
+    <script>
+        // 1. Relógio em Tempo Real
+        function atualizarRelogio() {
+            const agora = new Date();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            const segundos = String(agora.getSeconds()).padStart(2, '0');
+            document.getElementById('relogio').textContent = `🕒 ${horas}:${minutos}:${segundos}`;
+        }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+
+        // 2. Sistema de Cliques e Contador
+        const btnInteragir = document.getElementById('btnInteragir');
+        const contadorSpan = document.getElementById('contador');
+        const toast = document.getElementById('toastNotification');
+        let cliques = 0;
+
+        function mostrarToast(mensagem) {
+            toast.textContent = mensagem;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        btnInteragir.addEventListener('click', () => {
+            cliques++;
+            contadorSpan.textContent = cliques;
+            mostrarToast(`Você acenou ${cliques} vez(es)! 👋`);
+        });
+
+        // 3. Alternância Dinâmica de Cores de Fundo
+        const btnTema = document.getElementById('btnTema');
+        const gradientes = [
+            'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+            'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
+            'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+            'linear-gradient(135deg, #fbc531 0%, #e84118 100%)'
+        ];
+        let indiceGradiente = 0;
+
+        btnTema.addEventListener('click', () => {
+            indiceGradiente = (indiceGradiente + 1) % gradientes.length;
+            document.body.style.background = gradientes[indiceGradiente];
+            mostrarToast('Cor de fundo alterada com sucesso! 🎨');
+        });
+    </script>
+
+</body>
+</html>
