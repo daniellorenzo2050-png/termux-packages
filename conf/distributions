@@ -1,0 +1,7 @@
+Origin: Termux-Packages Custom
+Label: CustomRepo
+Codename: stable
+Architectures: aarch64 arm
+Components: main
+Description: Meus pacotes personalizados para o Termux
+SignWith: no
